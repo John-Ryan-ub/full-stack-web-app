@@ -1,0 +1,79 @@
+<section aria-labelledby="form-heading">
+  <h2 id="form-heading">Add a Pokémon</h2>
+
+  <form [formGroup]="pokemonForm" (ngSubmit)="savePokemon()">
+    <div>
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        [attr.aria-invalid]="pokemonForm.controls.name.touched && pokemonForm.controls.name.invalid"
+        aria-describedby="name-error"
+      />
+      @if (pokemonForm.controls.name.touched && pokemonForm.controls.name.hasError('required')) {
+        <p id="name-error" role="alert">Name is required.</p>
+      }
+    </div>
+
+    <div>
+      <label for="type">Type</label>
+      <input
+        id="type"
+        type="text"
+        formControlName="type"
+        [attr.aria-invalid]="pokemonForm.controls.type.touched && pokemonForm.controls.type.invalid"
+        aria-describedby="type-error"
+      />
+      @if (pokemonForm.controls.type.touched && pokemonForm.controls.type.hasError('required')) {
+        <p id="type-error" role="alert">Type is required.</p>
+      }
+    </div>
+
+    <div>
+      <label for="level">Level</label>
+      <input
+        id="level"
+        type="number"
+        min="1"
+        formControlName="level"
+        [attr.aria-invalid]="pokemonForm.controls.level.touched && pokemonForm.controls.level.invalid"
+        aria-describedby="level-error"
+      />
+      @if (pokemonForm.controls.level.touched && pokemonForm.controls.level.invalid) {
+        <p id="level-error" role="alert">Level is required and must be at least 1.</p>
+      }
+    </div>
+
+    <div>
+      <label for="nature">Nature</label>
+      <input
+        id="nature"
+        type="text"
+        formControlName="nature"
+        [attr.aria-invalid]="pokemonForm.controls.nature.touched && pokemonForm.controls.nature.invalid"
+        aria-describedby="nature-error"
+      />
+      @if (pokemonForm.controls.nature.touched && pokemonForm.controls.nature.hasError('required')) {
+        <p id="nature-error" role="alert">Nature is required.</p>
+      }
+    </div>
+
+    <button type="submit">Save Pokémon</button>
+  </form>
+</section>
+
+<section aria-labelledby="list-heading">
+  <h2 id="list-heading">Saved Pokémon</h2>
+
+  <ul>
+    @for (pokemon of pokemonService.pokemonList(); track pokemon.id) {
+      <li>
+        <strong>{{ pokemon.name }}</strong>
+        — Type: {{ pokemon.type }}, Level: {{ pokemon.level }}, Nature: {{ pokemon.nature }}
+      </li>
+    } @empty {
+      <li>No Pokémon saved yet.</li>
+    }
+  </ul>
+</section>
