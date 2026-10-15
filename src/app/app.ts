@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { PokemonForm } from './pokemon-form/pokemon-form';
 
 @Component({
-  imports: [RouterOutlet, PokemonForm],
+  imports: [PokemonForm],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

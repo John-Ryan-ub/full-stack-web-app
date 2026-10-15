@@ -20,6 +20,7 @@ export class PokemonForm implements OnInit {
   });
 
   ngOnInit() {
+    //Initial fetch function to show data when the components loads
     this.pokemonService.fetchPokemon();
   }
 

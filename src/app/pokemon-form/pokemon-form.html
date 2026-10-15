@@ -70,7 +70,7 @@
     @for (pokemon of pokemonService.pokemonList(); track pokemon.id) {
       <li>
         <strong>{{ pokemon.name }}</strong>
-        — Type: {{ pokemon.type }}, Level: {{ pokemon.level }}, Nature: {{ pokemon.nature }}
+        Type: {{ pokemon.type }}, Level: {{ pokemon.level }}, Nature: {{ pokemon.nature }}
       </li>
     } @empty {
       <li>No Pokémon saved yet.</li>
