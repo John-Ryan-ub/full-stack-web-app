@@ -13,12 +13,12 @@ app.listen(5000, () => {
     console.log('Server is running on port 5000');
 })
 
-const Pokemon = mongoose.model('Pokemon', {
+const Pokemon = mongoose.model('Pokemon', new mongoose.Schema ({
     name: String,
     type: String,
     level: Number,
     nature: String
-});
+}));
 
 app.post('/api/pokemon', async (req, res) => {
     const pokemon = new Pokemon(req, body);
@@ -28,7 +28,7 @@ app.post('/api/pokemon', async (req, res) => {
 
 app.get('/api/pokemon', async (req, res) => {
     const list = await Pokemon.find();
-    req.send(list);
-})
+    req.send(pokemon);console.log("Added new pokemon:", pokemon);
+});
 //API is running on port 5000 -> https//localhost:5000
 

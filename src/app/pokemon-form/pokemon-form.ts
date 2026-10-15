@@ -24,11 +24,22 @@ export class PokemonForm implements OnInit {
     this.pokemonService.fetchPokemon();
   }
 
+  onSubmit() {
+    if(this.pokemonForm.valid){
+      this.pokemonService.savePokemon(this.pokemonForm.getRawValue()).subscribe(() => {
+        this.pokemonService.fetchPokemon(); //Refresh data
+        this.pokemonForm.reset(); //clear form
+        console.log("Pokemon saved successfully!");
+      })
+    }
+  }
   protected savePokemon() {
     if (this.pokemonForm.invalid) {
       this.pokemonForm.markAllAsTouched();
       return;
     }
+
+    const data = this.pokemonForm.getRawValue();
 
     this.pokemonService.savePokemon(this.pokemonForm.getRawValue()).subscribe({
       next: () => {
